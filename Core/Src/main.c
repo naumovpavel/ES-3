@@ -117,9 +117,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  HAL_Delay(100);
-    uint8_t R = 0, C = 0, L = 0, Row[4] = {ROW4, ROW3, ROW2, ROW1}, Key, OldKey, OLED_Keys[12] = {0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30};
+    uint8_t R = 0, U = 0, D = 0, L = 0, Row[4] = {ROW4, ROW3, ROW2, ROW1}, Key, OldKey, OLED_Keys[12] = {0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30};
     for ( int i = 0; i < 4; i++ ) {
-      while( !( R && C && L ) ) {
+      while( !( R && U && D && L ) ) {
         OldKey = Key;
         Key = Check_Row( Row[i] );
         if ( Key == 0x01 && Key != OldKey && i == 1) {
@@ -127,11 +127,11 @@ int main(void)
           R = 1;
         } else if ( Key == 0x02 && Key != OldKey && i == 0) {
           moveUp();
-          C = 1;
+          U = 1;
           OLED_Keys[1+3*i] = 0x31;
         } else if ( Key == 0x02 && Key != OldKey && i == 3) {
           moveDown();
-          C = 1;
+          D = 1;
           OLED_Keys[1+3*i] = 0x31;
         } else if ( Key == 0x04 && Key != OldKey && i == 1) {
           moveLeft();
